@@ -69,6 +69,7 @@ class ProductDetailController extends Controller
     function edit($id){
         $r=request();
         $productDetail=ProductDetail::find($id);
+        $productDetail->sku = $r->sku;
         $productDetail->status = $r->status;
         $productDetail->save(); 
         Session::flash('success', "Product Detail updated");

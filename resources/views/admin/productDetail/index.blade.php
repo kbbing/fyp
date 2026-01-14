@@ -46,13 +46,16 @@
                     </td>
                     <td>
 
-                        <button class="fas fa-edit color-muted" style="border: transparent; background: none;" data-bs-toggle="modal" data-bs-target="#editModal"></button>
+                        <button class="fas fa-edit color-muted" style="border: transparent; background: none;" 
+                        data-bs-toggle="modal" data-bs-target="#editModal{{ $productDetail->id }}">
+                        </button>
 
-                        <div class="modal fade" id="editModal">
+                        <div class="modal fade" id="editModal{{ $productDetail->id }}">
                             <div class="modal-dialog">
                                 <form method="POST" action="{{ route('productDetail.edit' , ['id' => $productDetail->id]) }}">
                                     @csrf
                                     <input type="hidden" name="product_id" value="{{ $product->id }}">
+                                    
 
                                     <div class="modal-content">
                                         <div class="modal-header">
@@ -60,20 +63,19 @@
                                         </div>
 
                                         <div class="modal-body">
-                                            @foreach(App\Models\ProductDetail::where('id', $productDetail->id)->get() as $pd)
 
-                                            <label for="sku">Sku : {{$pd->sku}}</label>
+                                            <label for="sku">Sku :</label>
+                                            <input type="text" name="sku" class="form-control" value="{{ $productDetail->sku }}" >
 
                                             <div>
                                                 <label for="status">Status</label>
                                                 <select name="status" id="status" class="form-control">
                                                     @foreach(App\Models\ProductDetail::STATUS_SELECT as $key => $value)
-                                                        <option value="{{ $key }}">{{ $value }}</option>
+                                                        <option value="{{ $key }}" {{ $productDetail->status == $key ? 'selected' : '' }}>{{ $value }}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
                                             
-                                            @endforeach
                                         </div>
 
                                         <div class="modal-footer">

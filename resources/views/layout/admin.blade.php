@@ -26,7 +26,11 @@
 <body class="c-app">
     @include('partial.menu')
     <div class="c-wrapper">
-
+         @if(session('status'))
+            <div class="alert alert-success" role="alert">
+                {{ session('status') }}
+            </div>
+        @endif
         <div class="c-body">
             <main class="c-main">
                 <div class="container">

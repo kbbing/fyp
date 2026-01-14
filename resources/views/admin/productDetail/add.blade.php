@@ -4,7 +4,7 @@
 <div class="page-body">
     <div class="row">
         <div style="width: 20px;">
-            <a href="{{ route('product.index') }}" class="text-dark">
+            <a href="{{ route('productDetail.index', ['id'=>$product->id] ) }}" class="text-dark">
                 <i class="fas fa-chevron-left fa-2x"></i>
             </a>
         </div>
