@@ -23,10 +23,17 @@
             </a>
         </li>
 
-         <li class="c-sidebar-nav-item">
+        <li class="c-sidebar-nav-item">
             <a href="{{ route('category.index') }}" class="c-sidebar-nav-link">
                 <i class="fa-fw fas fa-layer-group c-sidebar-nav-icon"></i>
                 Category
+            </a>
+        </li>
+
+        <li class="c-sidebar-nav-item">
+            <a href="{{ route('report.index') }}" class="c-sidebar-nav-link">
+                <i class="fa-solid fa-bars-staggered c-sidebar-nav-icon"></i>
+                Movement
             </a>
         </li>
         

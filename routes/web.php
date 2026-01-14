@@ -25,7 +25,6 @@ Route::post('/product/store',  'ProductController@store')->name('product.store')
 Route::get('/product/edit/{id}',  'ProductController@edit')->name('product.edit');
 Route::post('/product/update',  'ProductController@update')->name('product.update');
 Route::get('/product/delete/{id}',  'ProductController@delete')->name('product.delete');
-Route::get('/product/search',  'ProductController@search')->name('product.search');
 
 // Product Details Routes
 Route::get('/product_detail/{id}',  'ProductDetailController@index')->name('productDetail.index');
@@ -33,7 +32,7 @@ Route::get('/product_detail/{product_id}/add',  'ProductDetailController@add')->
 Route::post('/product_detail/store',  'ProductDetailController@store')->name('productDetail.store');
 Route::post('/product_detail/edit/{id}',  'ProductDetailController@edit')->name('productDetail.edit');
 Route::post('/product_detail/rent/{id}',  'ProductDetailController@rent')->name('productDetail.rent');
-Route::get('/product_detail/return/{id}',  'ProductDetailController@return')->name('productDetail.return');
+Route::post('/product_detail/return/{id}',  'ProductDetailController@return')->name('productDetail.return');
 
 // Category Routes
 Route::get('/category',  'CategoryController@index')->name('category.index');
@@ -42,5 +41,6 @@ Route::post('/category/store',  'CategoryController@store')->name('category.stor
 Route::get('/category/edit/{id}',  'CategoryController@edit')->name('category.edit');
 Route::post('/category/update/',  'CategoryController@update')->name('category.update');
 Route::get('/category/delete/{id}',  'CategoryController@destroy')->name('category.delete');
-Route::get('/category/search',  'CategoryController@search')->name('category.search');
 
+// Report Routes
+Route::get('/movement',  'ReportController@index')->name('report.index');

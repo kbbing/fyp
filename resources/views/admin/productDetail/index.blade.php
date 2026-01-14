@@ -96,6 +96,8 @@
                                     <form method="POST" action="{{ route('productDetail.rent' , ['id' => $productDetail->id]) }}">
                                         @csrf
                                         <input type="hidden" name="product_id" value="{{ $product->id }}">
+                                        <input type="hidden" name="product_name" value="{{ $product->name }}">
+                                        <input type="hidden" name="sku" value="{{ $productDetail->sku }}">
 
                                         <div class="modal-content">
                                             <div class="modal-header">
@@ -119,9 +121,37 @@
                              </div>                                          
                     
                         @elseif ($productDetail->status == 3)   
-                            <a href="{{ route('productDetail.return', [
-                                    'id' => $productDetail->id
-                                ]) }}"  class="fa fas fa-reply" style="color: black;"></a>
+                        <button class="fa fas fa-reply" style="border: transparent; background: none;" data-bs-toggle="modal" data-bs-target="#rentModal"></button>
+
+                            <div class="modal fade" id="rentModal">
+                                <div class="modal-dialog">
+                                    <form method="POST" action="{{ route('productDetail.return' , ['id' => $productDetail->id]) }}">
+                                        @csrf
+                                        <input type="hidden" name="product_id" value="{{ $product->id }}">
+                                        <input type="hidden" name="product_name" value="{{ $product->name }}">
+                                        <input type="hidden" name="sku" value="{{ $productDetail->sku }}">
+
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5>Return</h5>
+                                            </div>
+
+                                            <div class="modal-body">
+                                                <label for="return_name">Return Name</label>
+                                                <input name="return_name" class="form-control" placeholder="Return Name">
+                                                <br>
+                                                <label for="return_date">Return Date</label>
+                                                <input type="date" name="return_date" class="form-control mt-2">
+                                            </div>
+
+                                            <div class="modal-footer">
+                                                <button type="submit" class="btn btn-success">Confirm</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                             </div> 
+                            
                         @else
                             <i class="fa fa-exclamation-triangle"></i>
                         @endif

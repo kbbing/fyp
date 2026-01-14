@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use DB;
 use App\Models\Product;
 use App\Models\ProductDetail;
+use App\Models\Report;
 use Auth;
 use Session;
 
@@ -47,10 +48,19 @@ class ProductDetailController extends Controller
 
     function rent($id){
         $r=request();
+
         $productDetail=ProductDetail::find($id);
         $productDetail->status = 3; // Set status to 'Rented Out'
         $productDetail->stock_location = $r->renter_name;
         $productDetail->save(); 
+
+        $add=Report::create([
+            'item' => $r->product_name,
+            'sku' => $r->sku,
+            'status' => '2',
+            'person' => $r->renter_name,
+        ]);
+
         Session::flash('success', "Product rented out");
 
         return redirect()->back();
@@ -61,8 +71,16 @@ class ProductDetailController extends Controller
         $productDetail->stock_location = 'Storage Room';
         $productDetail->status = 1; // Set status to 'Available'
         $productDetail->save(); 
-        Session::flash('success', "Product returned");
 
+        $r=request();
+        $add=Report::create([
+            'item' => $r->product_name,
+            'sku' => $r->sku,
+            'status' => '1',
+            'person' => $r->return_name,
+        ]);
+
+        Session::flash('success', "Product returned");
         return redirect()->back();
     }
 
